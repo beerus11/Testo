@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import in.anuraggoel.testo.R;
 import in.anuraggoel.testo.fragments.HomeFragment;
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_logout:
+                finish();
+                showMessage("Bye Bye !");
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
@@ -104,4 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         outState.putInt("SELECTED_ID", mSelectedId);
     }
 
+    private void showMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 }
