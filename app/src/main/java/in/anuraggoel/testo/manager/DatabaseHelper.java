@@ -67,7 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Product table create statement
     private static final String CREATE_TABLE_PRODUCTS = "CREATE TABLE "
             + TABLE_PRODUCTS + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + KEY_PRODUCT_CODE
-            + " INTEGER," + KEY_PRODUCT_NAME + " TEXT," + KEY_PRODUCT_CATEGORY + KEY_PRODUCT_MANUFACTURER + " TEXT,"
+            + " INTEGER," + KEY_PRODUCT_NAME + " TEXT," + KEY_PRODUCT_CATEGORY + " TEXT," + KEY_PRODUCT_MANUFACTURER
             + " TEXT," + KEY_PRODUCT_PRICE + " INTEGER," + KEY_PRODUCT_UNITS
             + " INTEGER" + ")";
 
@@ -115,7 +115,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user_id;
     }
 
-    public long createProduct(Product product) {
+    public long addProduct(Product product) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_PRODUCT_CODE, product.getProductCode());
@@ -162,6 +162,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    public Product getproductByCode(int code) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_PRODUCTS + " WHERE "
+                + KEY_PRODUCT_CODE + " = " + code;
+
+        Log.d(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Product product = new Product();
+        product.setProductCode(code);
+        product.setProductName(c.getString(c.getColumnIndex(KEY_PRODUCT_NAME)));
+        product.setCategory(c.getString(c.getColumnIndex(KEY_PRODUCT_CATEGORY)));
+        product.setManufacturer(c.getString(c.getColumnIndex(KEY_PRODUCT_MANUFACTURER)));
+        product.setPrice(c.getInt(c.getColumnIndex(KEY_PRODUCT_PRICE)));
+        product.setUnits(c.getInt(c.getColumnIndex(KEY_PRODUCT_UNITS)));
+
+        return product;
+    }
+
     public List<Order> getAllOrders() {
         List<Order> orders = new ArrayList<Order>();
         String selectQuery = "SELECT  * FROM " + TABLE_ORDERS;
@@ -199,6 +223,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(product.getProductName())});
     }
 
+    public boolean checkProductExist() {
+        String countQuery = "SELECT  * FROM " + TABLE_PRODUCTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        // return count
+        return count > 0;
+    }
 
     // closing database
     public void closeDB() {

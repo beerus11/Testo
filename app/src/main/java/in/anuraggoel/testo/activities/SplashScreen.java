@@ -6,16 +6,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import in.anuraggoel.testo.R;
+import in.anuraggoel.testo.TestApplication;
+import in.anuraggoel.testo.manager.DatabaseHelper;
+import in.anuraggoel.testo.models.Product;
 import in.anuraggoel.testo.utils.AppUtil;
+import in.anuraggoel.testo.utils.ProductUtil;
 
 public class SplashScreen extends AppCompatActivity {
 
     private static final long SPLASH_TIME_OUT = 3000;
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        db = TestApplication.getDBHandler(this);
+        if (!db.checkProductExist()) {
+            //Adding Dummy Data in Product Table
+            ProductUtil.addData(db);
+        }
         new Handler().postDelayed(new Runnable() {
 
             /*
