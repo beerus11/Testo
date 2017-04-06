@@ -16,6 +16,7 @@ import in.anuraggoel.testo.R;
 import in.anuraggoel.testo.TestApplication;
 import in.anuraggoel.testo.manager.DatabaseHelper;
 import in.anuraggoel.testo.models.User;
+import in.anuraggoel.testo.utils.AppUtil;
 
 /**
  * A login screen that offers login via email/password.
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             User user = db.getUserByPhoneNo(phoneno);
             showMessage("Authenticated");
             Log.d(TAG, user.toString());
+            AppUtil.saveSession(user, this);
             startMainActivity();
         } else {
             showMessage("Invalid Details");
@@ -80,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private Boolean isValid(String password) {

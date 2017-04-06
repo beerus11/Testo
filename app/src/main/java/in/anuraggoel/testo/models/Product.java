@@ -12,6 +12,19 @@ public class Product {
     private int price;
     private int units;
 
+    public Product() {
+
+    }
+
+    public Product(int productCode, String productName, String manufacturer, String category, int price, int units) {
+        this.productCode = productCode;
+        this.productName = productName;
+        this.manufacturer = manufacturer;
+        this.category = category;
+        this.price = price;
+        this.units = units;
+    }
+
     public int getProductCode() {
         return productCode;
     }

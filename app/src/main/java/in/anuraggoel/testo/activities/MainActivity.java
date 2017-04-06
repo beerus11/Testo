@@ -18,6 +18,7 @@ import in.anuraggoel.testo.R;
 import in.anuraggoel.testo.fragments.HomeFragment;
 import in.anuraggoel.testo.fragments.OrderFragment;
 import in.anuraggoel.testo.fragments.ProductFragment;
+import in.anuraggoel.testo.utils.AppUtil;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -74,16 +75,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_logout:
-                finish();
-                showMessage("Bye Bye !");
+                AppUtil.delSession(this);
                 mDrawerLayout.closeDrawer(GravityCompat.START);
+                showMessage("Bye Bye !");
+                finish();
                 break;
 
 
         }
-        fragmentManager.beginTransaction()
-                .replace(R.id.flContent, fragment)
-                .commit();
+        if (fragment != null) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.flContent, fragment)
+                    .commit();
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import in.anuraggoel.testo.R;
+import in.anuraggoel.testo.utils.AppUtil;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -26,8 +27,10 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, LoginActivity.class);
-                startActivity(i);
+                if (AppUtil.isSessionExist(SplashScreen.this))
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                else
+                    startActivity(new Intent(SplashScreen.this, LoginActivity.class));
 
                 // close this activity
                 finish();

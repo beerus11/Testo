@@ -3,6 +3,7 @@ package in.anuraggoel.testo.manager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -13,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import in.anuraggoel.testo.exception.TestoException;
 import in.anuraggoel.testo.models.Order;
 import in.anuraggoel.testo.models.Product;
 import in.anuraggoel.testo.models.User;
@@ -58,9 +60,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // User Table Create Statements
     private static final String CREATE_TABLE_USERS = "CREATE TABLE "
-            + TABLE_USERS + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + KEY_USER_NAME
-            + " TEXT," + KEY_USER_PASSWORD + " TEXT," + KEY_USER_PHONENO
-            + " INTEGER" + ")";
+            + TABLE_USERS + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL," + KEY_USER_NAME
+            + " TEXT UNIQUE," + KEY_USER_PASSWORD + " TEXT," + KEY_USER_PHONENO
+            + " INTEGER UNIQUE" + ")";
 
     // Product table create statement
     private static final String CREATE_TABLE_PRODUCTS = "CREATE TABLE "

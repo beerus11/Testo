@@ -10,6 +10,17 @@ public class Order {
     private int price;
     private String dateTime;
 
+    public Order() {
+
+    }
+
+    public Order(String productName, String customerName, int price, String dateTime) {
+        this.productName = productName;
+        this.customerName = customerName;
+        this.price = price;
+        this.dateTime = dateTime;
+    }
+
     public String getProductName() {
         return productName;
     }

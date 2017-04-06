@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import in.anuraggoel.testo.R;
 import in.anuraggoel.testo.TestApplication;
+import in.anuraggoel.testo.exception.TestoException;
 import in.anuraggoel.testo.manager.DatabaseHelper;
 import in.anuraggoel.testo.models.User;
 
@@ -53,11 +54,11 @@ public class SignupActivity extends AppCompatActivity {
             user.setUserName(userName);
             user.setPassword(password);
             user.setPhoneNo(phoneno);
-            if (db.createUser(user) > 1) {
+            if (db.createUser(user) > 0) {
                 showMessage("User Created Successfully !");
                 startMainActivity();
             } else {
-                showMessage("Error !");
+                showMessage("Username or PhoneNo Already Exist!");
             }
         } else {
             showMessage("Invalid Details");

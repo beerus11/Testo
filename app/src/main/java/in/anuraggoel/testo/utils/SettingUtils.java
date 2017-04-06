@@ -43,8 +43,7 @@ public final class SettingUtils {
     }
 
     public static boolean contains(Context context, String key) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         return prefs.contains(key);
     }
 
@@ -53,8 +52,7 @@ public final class SettingUtils {
     }
 
     public static void remove(Context context, String key) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.remove(key);
         commitOrApply(editor);
@@ -65,8 +63,7 @@ public final class SettingUtils {
     }
 
     public static void set(Context context, String key, boolean value) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.putBoolean(key, value);
         commitOrApply(editor);
@@ -77,8 +74,7 @@ public final class SettingUtils {
     }
 
     public static void set(Context context, String key, float value) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.putFloat(key, value);
         commitOrApply(editor);
@@ -89,8 +85,7 @@ public final class SettingUtils {
     }
 
     public static void set(Context context, String key, int value) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.putInt(key, value);
         commitOrApply(editor);
@@ -101,8 +96,7 @@ public final class SettingUtils {
     }
 
     public static void set(Context context, String key, long value) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.putLong(key, value);
         commitOrApply(editor);
@@ -113,8 +107,7 @@ public final class SettingUtils {
     }
 
     public static void set(Context context, String key, String value) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         Editor editor = prefs.edit();
         editor.putString(key, value);
         commitOrApply(editor);
@@ -125,8 +118,7 @@ public final class SettingUtils {
     }
 
     public static boolean get(Context context, String key, boolean defValue) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         return prefs.getBoolean(key, defValue);
     }
 
@@ -135,8 +127,7 @@ public final class SettingUtils {
     }
 
     public static float get(Context context, String key, float defValue) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         return prefs.getFloat(key, defValue);
     }
 
@@ -145,8 +136,7 @@ public final class SettingUtils {
     }
 
     public static int get(Context context, String key, int defValue) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         return prefs.getInt(key, defValue);
     }
 
@@ -155,8 +145,7 @@ public final class SettingUtils {
     }
 
     public static long get(Context context, String key, long defValue) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         return prefs.getLong(key, defValue);
     }
 
@@ -165,13 +154,12 @@ public final class SettingUtils {
     }
 
     public static String get(Context context, String key, String defValue) {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE);
         return prefs.getString(key, defValue);
     }
 
     public static Editor getEditor(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).edit();
+        return context.getSharedPreferences(Constants.PREF_TESTO, context.MODE_PRIVATE).edit();
     }
 
     // ////////////////////////////////////////////////////////////////////////
