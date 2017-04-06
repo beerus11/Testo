@@ -1,5 +1,6 @@
 package in.anuraggoel.testo.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 AppUtil.delSession(this);
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 showMessage("Bye Bye !");
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
                 break;
 
