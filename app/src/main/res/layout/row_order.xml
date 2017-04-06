@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
+    android:background="@color/primary_light"
     android:paddingLeft="40dp">
 
     <LinearLayout
@@ -11,12 +12,12 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvDateTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
             android:gravity="center_vertical|right"
             android:paddingLeft="10dp"
             android:paddingRight="20dp"
@@ -26,8 +27,9 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
@@ -37,14 +39,14 @@
                 android:paddingLeft="8dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Product Name:"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_weight="1"

@@ -15,8 +15,10 @@ import android.widget.Toast;
 import in.anuraggoel.testo.R;
 import in.anuraggoel.testo.TestApplication;
 import in.anuraggoel.testo.manager.DatabaseHelper;
+import in.anuraggoel.testo.models.Order;
 import in.anuraggoel.testo.models.Product;
 import in.anuraggoel.testo.utils.Constants;
+import in.anuraggoel.testo.utils.SettingUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,8 +65,13 @@ public class ProductFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     db.updateProduct(product);
-                    showMessage("Order Completed !");
+                    //String productName, String customerName, int price, String dateTime
+                    String userName = SettingUtils.get(getActivity(), Constants.PREF_TESTO_USER_NAME, "userName");
+                    Order order = new Order(product.getProductName(), userName,
+                            product.getPrice(), String.valueOf(System.currentTimeMillis()));
+                    db.addOrder(order);
                     getFragmentManager().popBackStack();
+                    showMessage("Order Completed !");
                 }
             });
         }

@@ -76,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_ORDERS + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
             + KEY_PRODUCT_NAME + " TEXT," + KEY_ORDER_CUSTOMER_NAME
             + " TEXT," + KEY_ORDER_PRODUCT_PRICE + " INTEGER," + KEY_ORDER_DATETIME
-            + " DATETIME" + ")";
+            + " TEXT" + ")";
 
 
     public DatabaseHelper(Context context) {
@@ -129,7 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return product_id;
     }
 
-    public long createOrder(Order order) {
+    public long addOrder(Order order) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_PRODUCT_NAME, order.getProductName());
@@ -137,7 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ORDER_DATETIME, order.getDateTime());
         values.put(KEY_ORDER_PRODUCT_PRICE, order.getPrice());
         // insert row
-        long order_id = db.insert(TABLE_PRODUCTS, null, values);
+        long order_id = db.insert(TABLE_ORDERS, null, values);
         return order_id;
     }
 
