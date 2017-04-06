@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import in.anuraggoel.testo.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
