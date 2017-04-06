@@ -46,7 +46,12 @@ public class HomeFragment extends Fragment {
                     if (!TextUtils.isEmpty(etCode.getText().toString())) {
                         try {
                             int code = Integer.parseInt(etCode.getText().toString().trim());
-                            MainActivity.getInstance().showProductFragment(db.getproductByCode(code));
+                            Product product = db.getproductByCode(code);
+                            if (product == null) {
+                                showMessage("No Product Found !");
+                                return;
+                            }
+                            MainActivity.getInstance().showProductFragment(product);
                         } catch (NumberFormatException exp) {
                             Log.e(TAG, "Invalid Product Code !");
                         }
@@ -76,6 +81,7 @@ public class HomeFragment extends Fragment {
     private void showMessage(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
+
     private void setTitle(String title) {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.getSupportActionBar().setTitle(title);
