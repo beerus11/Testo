@@ -10,7 +10,7 @@
     android:gravity="center"
     android:background="@color/primary"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="in.anuraggoel.testo.SplashScreen">
+    tools:context="in.anuraggoel.testo.activities.SplashScreen">
     <com.github.ybq.android.spinkit.SpinKitView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/spin_kit"
