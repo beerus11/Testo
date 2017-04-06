@@ -18,8 +18,17 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/primary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Testo"
-            />
+            app:title="Testo" />
+
+        <RelativeLayout
+            android:id="@+id/flContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="in.arplabs.trackme.MainActivity"
+            tools:showIn="@layout/app_bar_main">
+
+        </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
 

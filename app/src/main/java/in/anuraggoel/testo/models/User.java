@@ -7,7 +7,7 @@ package in.anuraggoel.testo.models;
 public class User {
     private String userName;
     private String password;
-    private int phoneNo;
+    private long phoneNo;
 
     public String getUserName() {
         return userName;
@@ -25,11 +25,11 @@ public class User {
         this.password = password;
     }
 
-    public int getPhoneNo() {
+    public long getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(long phoneNo) {
         this.phoneNo = phoneNo;
     }
 

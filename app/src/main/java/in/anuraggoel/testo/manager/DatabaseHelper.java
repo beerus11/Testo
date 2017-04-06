@@ -45,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Product column names
     private static final String KEY_PRODUCT_CODE = "code";
-    private static final String KEY_PRODUCT_NAME = "name";
+    private static final String KEY_PRODUCT_NAME = "product_name";
     private static final String KEY_PRODUCT_MANUFACTURER = "manufacturer";
     private static final String KEY_PRODUCT_CATEGORY = "category";
     private static final String KEY_PRODUCT_PRICE = "price";
@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Order column names
     private static final String KEY_ORDER_PRODUCT_PRICE = "price";
     private static final String KEY_ORDER_DATETIME = "date";
-    private static final String KEY_ORDER_CUSTOMER_NAME = "name";
+    private static final String KEY_ORDER_CUSTOMER_NAME = "customer_name";
 
     // User Table Create Statements
     private static final String CREATE_TABLE_USERS = "CREATE TABLE "
@@ -139,11 +139,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return order_id;
     }
 
-    public User getUserByName(String userName) {
+    public User getUserByPhoneNo(long phoneno) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
-                + KEY_USER_NAME + " = " + userName;
+                + KEY_USER_PHONENO + " = " + phoneno;
 
         Log.d(LOG, selectQuery);
 
@@ -153,9 +153,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.moveToFirst();
 
         User user = new User();
-        user.setUserName(userName);
+        user.setUserName(c.getString(c.getColumnIndex(KEY_USER_NAME)));
         user.setPassword(c.getString(c.getColumnIndex(KEY_USER_PASSWORD)));
-        user.setPhoneNo(c.getInt(c.getColumnIndex(KEY_USER_PHONENO)));
+        user.setPhoneNo(phoneno);
 
         return user;
     }
