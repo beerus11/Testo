@@ -35,9 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_local_phone_black_24dp"
-                android:inputType="textPassword"
                 android:hint="Phone No"
-                android:textColorLink="@android:color/white" />
+                android:textColorLink="@android:color/white"
+                android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
