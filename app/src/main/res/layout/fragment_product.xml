@@ -2,28 +2,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary_light"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@color/primary_light"
     tools:context="in.anuraggoel.testo.fragments.ProductFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
-
-    <EditText
-        android:id="@+id/editText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Product Code"
-        android:ems="10"
-        android:inputType="number" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvPName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Product Name"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvPMan"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Manufacturer Name"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvPCategory"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Category"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvPPrice"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Price"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvPUnits"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Units"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/button"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/icons"
-        android:background="@color/primary_dark"
+        android:id="@+id/btnBuy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Find Product" />
+        android:layout_height="48dp"
+        android:background="@color/primary_dark"
+        android:text="Buy product"
+        android:textColor="@color/icons" />
+
 </LinearLayout>

@@ -153,7 +153,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (c != null)
             c.moveToFirst();
-
+        Log.d(LOG, "Size :: " + c.getCount());
+        if (c.getCount() == 0)
+            return null;
         User user = new User();
         user.setUserName(c.getString(c.getColumnIndex(KEY_USER_NAME)));
         user.setPassword(c.getString(c.getColumnIndex(KEY_USER_PASSWORD)));
@@ -174,7 +176,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (c != null)
             c.moveToFirst();
-
+        Log.d(LOG, "Size :: " + c.getCount());
+        if (c.getCount() == 0)
+            return null;
         Product product = new Product();
         product.setProductCode(code);
         product.setProductName(c.getString(c.getColumnIndex(KEY_PRODUCT_NAME)));

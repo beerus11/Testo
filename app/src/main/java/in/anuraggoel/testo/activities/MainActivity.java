@@ -6,6 +6,7 @@ import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +19,9 @@ import in.anuraggoel.testo.R;
 import in.anuraggoel.testo.fragments.HomeFragment;
 import in.anuraggoel.testo.fragments.OrderFragment;
 import in.anuraggoel.testo.fragments.ProductFragment;
+import in.anuraggoel.testo.models.Product;
 import in.anuraggoel.testo.utils.AppUtil;
+import in.anuraggoel.testo.utils.Constants;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,13 +30,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private int mSelectedId;
+    private static MainActivity mIntance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         setToolbar();
         initView();
 
@@ -43,7 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //default it set first item as selected
         mSelectedId = savedInstanceState == null ? R.id.nav_home : savedInstanceState.getInt("SELECTED_ID");
         itemSelection(mSelectedId);
+        mIntance = this;
 
+    }
+
+    public static MainActivity getInstance() {
+        return mIntance;
     }
 
     private void setToolbar() {
@@ -65,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (mSelectedId) {
 
             case R.id.nav_home:
-                fragment = new ProductFragment();
+                fragment = new HomeFragment();
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
@@ -109,6 +116,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onSaveInstanceState(outState, outPersistentState);
         //save selected item so it will remains same even after orientation change
         outState.putInt("SELECTED_ID", mSelectedId);
+    }
+
+    public void showProductFragment(Product product) {
+        // Create new fragment and transaction
+        Fragment newFragment = new ProductFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.PRODUCT_DETAILS, product);
+        newFragment.setArguments(bundle);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.flContent, newFragment);
+        transaction.addToBackStack(null);
+        // Commit the transaction
+        transaction.commit();
     }
 
     private void showMessage(String msg) {

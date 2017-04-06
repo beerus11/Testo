@@ -55,8 +55,8 @@ public class SignupActivity extends AppCompatActivity {
             user.setPassword(password);
             user.setPhoneNo(phoneno);
             if (db.createUser(user) > 0) {
-                showMessage("User Created Successfully !");
-                startMainActivity();
+                showMessage("User Created Successfully ! Login Now !");
+                startLoginActivity();
             } else {
                 showMessage("Username or PhoneNo Already Exist!");
             }
@@ -76,8 +76,8 @@ public class SignupActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void startLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

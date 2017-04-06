@@ -56,15 +56,20 @@ public class LoginActivity extends AppCompatActivity {
 
     private void authenticate() {
         String password = mPassword.getText().toString();
-        int phoneno;
+        long phoneno;
         try {
-            phoneno = Integer.parseInt(mPhoneNo.getText().toString());
+            phoneno = Long.parseLong(mPhoneNo.getText().toString().trim());
+            Log.d(TAG, "Phoneno :: " + phoneno);
         } catch (NumberFormatException exp) {
             showMessage("Invalid PhoneNo");
             return;
         }
         if (isValid(password)) {
             User user = db.getUserByPhoneNo(phoneno);
+            if (user == null) {
+                showMessage("No User Found !");
+                return;
+            }
             showMessage("Authenticated");
             Log.d(TAG, user.toString());
             AppUtil.saveSession(user, this);

@@ -1,17 +1,19 @@
 package in.anuraggoel.testo.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Anurag on 06-04-2017.
  */
 
-public class Product {
+public class Product implements Serializable{
     private int productCode;
     private String productName;
     private String manufacturer;
     private String category;
     private int price;
     private int units;
-
+    private static final long serialVersionUID = 7526472295622776156L;
     public Product() {
 
     }
