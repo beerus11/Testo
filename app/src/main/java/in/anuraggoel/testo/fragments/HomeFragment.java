@@ -4,6 +4,7 @@ package in.anuraggoel.testo.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,17 +64,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Testo");
+        setTitle("Home");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().setTitle("Testo");
+        setTitle("Testo");
     }
 
     private void showMessage(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    }
+    private void setTitle(String title) {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setTitle(title);
     }
 
 

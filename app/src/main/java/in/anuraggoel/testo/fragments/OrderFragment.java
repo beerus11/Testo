@@ -3,6 +3,7 @@ package in.anuraggoel.testo.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -78,12 +79,17 @@ public class OrderFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Travel History");
+        setTitle("Orders");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().setTitle("TrackMe");
+        setTitle("Testo");
+    }
+
+    private void setTitle(String title) {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setTitle(title);
     }
 }

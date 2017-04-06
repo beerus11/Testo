@@ -4,6 +4,7 @@ package in.anuraggoel.testo.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,23 @@ public class ProductFragment extends Fragment {
 
     private void showMessage(String msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setTitle("Product Details");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        setTitle("Testo");
+    }
+
+    private void setTitle(String title) {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setTitle(title);
     }
 
 }
