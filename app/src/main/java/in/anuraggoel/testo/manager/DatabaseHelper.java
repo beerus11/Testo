@@ -190,9 +190,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return product;
     }
 
-    public List<Order> getAllOrders() {
-        List<Order> orders = new ArrayList<Order>();
-        String selectQuery = "SELECT  * FROM " + TABLE_ORDERS;
+    public ArrayList<Order> getAllOrders(String userName) {
+        ArrayList<Order> orders = new ArrayList<Order>();
+        String selectQuery = "SELECT  * FROM " + TABLE_ORDERS + " WHERE "
+                + KEY_ORDER_CUSTOMER_NAME + " = '" + userName + "'";
 
         Log.d(LOG, selectQuery);
 
